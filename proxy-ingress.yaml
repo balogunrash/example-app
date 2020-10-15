@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: github-proxy
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: github.gbeksbabay.com
+    http:
+      paths:
+      - backend:
+          serviceName: github-proxy
+          servicePort: 80
+        path: /
+  tls:
+  - hosts:
+    - github.gbeksbabay.com
+    secretName: proxy-proxy-tls
